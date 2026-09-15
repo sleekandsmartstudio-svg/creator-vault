@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+/*
+  Color palette, sampled from the original design.
+  Using Tailwind v4's @theme means these become real utility
+  classes: bg-cream, text-coral, bg-navy, etc.
+*/
+@theme {
+  --color-cream: #f7f3ed;
+  --color-coral: #cd7877;
+  --color-lime: #c8e189;
+  --color-navy: #2f2b34;
+  --color-tan: #dfc08f;
+  --color-lavender: #bdb2d4;
+
+  --font-sans: -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  --font-mono: "SF Mono", "JetBrains Mono", "Fira Code", Menlo, Consolas,
+    monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Replace the browser's default focus box (the black rectangle you get
+   when tabbing to a button) with a consistent coral outline, only shown
+   for keyboard navigation so mouse clicks stay clean. */
+a,
+button {
+  outline: none;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-coral);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-navy);
+}
+
+/* Modal entrance */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.25s ease-out;
+}
+
+/* Marquee ticker animation used in the "friction" section */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 22s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
